@@ -1,4 +1,4 @@
-# WPDelve Bare Bones
+# WPDelve Bare Bones Theme
 
 A WordPress starter theme for use with the Genesis Framework. Based on the Studiopress [Genesis Sample Theme](https://github.com/copyblogger/genesis-sample)
 

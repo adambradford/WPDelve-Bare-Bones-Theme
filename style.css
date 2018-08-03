@@ -533,7 +533,7 @@ th:first-child {
 .site-inner {
 	clear: both;
 	margin: 0 auto;
-	padding: 60px 30px 0;
+	padding: 30px 5% 0;
 }
 
 
@@ -1506,6 +1506,7 @@ p.entry-meta {
 	.site-inner {
 		margin-top: 70px;
 		max-width: 1140px;
+		padding: 60px 30px 0;
 	}
 
 	/* Content

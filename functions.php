@@ -305,7 +305,7 @@ return $title;
 }
 add_filter( 'widget_title', 'flexible_widget_titles' );
 
-// Enqueue sticky menu script - Crunchify Tips
+//* Load script for SpamSpan email obfuscation (See http://www.spamspan.com)
 add_action( 'wp_enqueue_scripts', 'ab_enqueue_script' );
 function ab_enqueue_script() {
     wp_enqueue_script( 'spamspan', get_stylesheet_directory_uri() . '/js/spamspan.js', array( 'jquery' ), '', true );

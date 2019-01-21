@@ -2,11 +2,12 @@
 /**
  * Genesis Sample.
  *
- * This file adds the required CSS to the front end to the Theme.
+ * This file adds the required CSS to the front end to the Genesis Sample Theme.
  *
- * @package WPDelve Bare Bones
- * @author  Adam Bradford
- * @link    https://wpdelve.com/
+ * @package Genesis Sample
+ * @author  StudioPress
+ * @license GPL-2.0-or-later
+ * @link    https://www.studiopress.com/
  */
 
 add_action( 'wp_enqueue_scripts', 'genesis_sample_css' );
@@ -28,8 +29,8 @@ function genesis_sample_css() {
 		$logo_height           = absint( $logo[2] );
 		$logo_max_width        = get_theme_mod( 'genesis_sample_logo_width', 350 );
 		$logo_width            = absint( $logo[1] );
-		$logo_ratio            = $logo_width / $logo_height;
-		$logo_effective_height = min( $logo_width, $logo_max_width ) / $logo_ratio;
+		$logo_ratio            = $logo_width / max( $logo_height, 1 );
+		$logo_effective_height = min( $logo_width, $logo_max_width ) / max( $logo_ratio, 1 );
 		$logo_padding          = max( 0, ( 60 - $logo_effective_height ) / 2 );
 	}
 
@@ -53,7 +54,8 @@ function genesis_sample_css() {
 			color: %s;
 		}
 
-		', $color_link
+		',
+		$color_link
 	) : '';
 
 	$css .= ( genesis_sample_customizer_get_default_accent_color() !== $color_accent ) ? sprintf(
@@ -72,14 +74,24 @@ function genesis_sample_css() {
 		input[type="submit"]:focus,
 		input[type="submit"]:hover,
 		.button:focus,
-		.button:hover,
-		.genesis-nav-menu > .menu-highlight > a:hover,
-		.genesis-nav-menu > .menu-highlight > a:focus,
-		.genesis-nav-menu > .menu-highlight.current-menu-item > a {
-			background-color: %s;
-			color: %s;
+		.button:hover {
+			background-color: %1$s;
+			color: %2$s;
 		}
-		', $color_accent, genesis_sample_color_contrast( $color_accent )
+
+		@media only screen and (min-width: 960px) {
+			.genesis-nav-menu > .menu-highlight > a:hover,
+			.genesis-nav-menu > .menu-highlight > a:focus,
+			.genesis-nav-menu > .menu-highlight.current-menu-item > a,
+			.content .wp-block-button .wp-block-button__link:focus,
+			.content .wp-block-button .wp-block-button__link:hover {
+				background-color: %1$s;
+				color: %2$s;
+			}
+		}
+		',
+		$color_accent,
+		genesis_sample_color_contrast( $color_accent )
 	) : '';
 
 	$css .= ( has_custom_logo() && ( 200 <= $logo_effective_height ) ) ?
@@ -95,7 +107,8 @@ function genesis_sample_css() {
 		.wp-custom-logo .site-container .title-area {
 			max-width: %spx;
 		}
-		', $logo_max_width
+		',
+		$logo_max_width
 	) : '';
 
 	// Place menu below logo and center logo once it gets big.
@@ -124,12 +137,13 @@ function genesis_sample_css() {
 		'
 	: '';
 
-	$css .= ( has_custom_logo() && $logo_padding ) ? sprintf(
+	$css .= ( has_custom_logo() && $logo_padding && ( 1 < $logo_effective_height ) ) ? sprintf(
 		'
 		.wp-custom-logo .title-area {
 			padding-top: %spx;
 		}
-		', $logo_padding + 5
+		',
+		$logo_padding + 5
 	) : '';
 
 	if ( $css ) {

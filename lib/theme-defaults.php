@@ -2,11 +2,12 @@
 /**
  * Genesis Sample.
  *
- * This file adds the default theme settings to the Theme.
+ * This file adds the default theme settings to the Genesis Sample Theme.
  *
- * @package WPDelve Bare Bones
- * @author  Adam Bradford
- * @link    https://wpdelve.com/
+ * @package Genesis Sample
+ * @author  StudioPress
+ * @license GPL-2.0-or-later
+ * @link    https://www.studiopress.com/
  */
 
 add_filter( 'genesis_theme_settings_defaults', 'genesis_sample_theme_defaults' );

@@ -13,6 +13,11 @@
 // Starts the engine.
 require_once get_template_directory() . '/lib/init.php';
 
+// Defines the child theme (do not remove).
+define( 'CHILD_THEME_NAME', 'WPDelve Bare Bones' );
+define( 'CHILD_THEME_URL', 'https://www.wpdelve.com/' );
+define( 'CHILD_THEME_VERSION', '1.0.0' );
+
 // Sets up the Theme.
 require_once get_stylesheet_directory() . '/lib/theme-defaults.php';
 
@@ -37,10 +42,24 @@ require_once get_stylesheet_directory() . '/lib/customize.php';
 // Includes Customizer CSS.
 require_once get_stylesheet_directory() . '/lib/output.php';
 
-// Defines the child theme (do not remove).
-define( 'CHILD_THEME_NAME', 'WPDelve Bare Bones' );
-define( 'CHILD_THEME_URL', 'https://www.wpdelve.com/' );
-define( 'CHILD_THEME_VERSION', '1.0.0' );
+// Adds WooCommerce support.
+require_once get_stylesheet_directory() . '/lib/woocommerce/woocommerce-setup.php';
+
+// Adds the required WooCommerce styles and Customizer CSS.
+require_once get_stylesheet_directory() . '/lib/woocommerce/woocommerce-output.php';
+
+// Adds the Genesis Connect WooCommerce notice.
+require_once get_stylesheet_directory() . '/lib/woocommerce/woocommerce-notice.php';
+
+add_action( 'after_setup_theme', 'genesis_child_gutenberg_support' );
+/**
+ * Adds Gutenberg opt-in features and styling.
+ *
+ * @since 2.7.0
+ */
+function genesis_child_gutenberg_support() { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- using same in all child themes to allow action to be unhooked.
+	require_once get_stylesheet_directory() . '/lib/gutenberg/init.php';
+}
 
 add_action( 'wp_enqueue_scripts', 'genesis_sample_enqueue_scripts_styles' );
 /**
@@ -56,6 +75,7 @@ function genesis_sample_enqueue_scripts_styles() {
 		array(),
 		CHILD_THEME_VERSION
 	);
+	
 	wp_enqueue_style( 'dashicons' );
 
 	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
@@ -74,7 +94,7 @@ function genesis_sample_enqueue_scripts_styles() {
 
 	wp_enqueue_script(
 		'genesis-sample',
-		get_stylesheet_directory_uri() . '/js/wpdbb.js',
+		get_stylesheet_directory_uri() . '/js/genesis-sample.js',
 		array( 'jquery' ),
 		CHILD_THEME_VERSION,
 		true
@@ -104,11 +124,6 @@ function genesis_sample_responsive_menu_settings() {
 
 	return $settings;
 
-}
-
-// Sets the content width based on the theme's design and stylesheet.
-if ( ! isset( $content_width ) ) {
-	$content_width = 702; // Pixels.
 }
 
 // Adds support for HTML5 markup structure.

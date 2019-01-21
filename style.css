@@ -4,7 +4,7 @@
 	Description: This is a ‘bare bones’ theme created as a starting point for your own themes
 	Author: Adam Bradford
 	Author URI: https://www.wpdelve.com/
-	Version: 1.0.0
+	Version: 1.1.0
 	Template: genesis
 */
 
@@ -12,10 +12,11 @@
 /* HTML5 Reset
 ---------------------------------------------------------------------------------------------------- */
 
-/* Baseline Normalize
---------------------------------------------- */
-/* normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
-button,hr,input{overflow:visible}progress,sub,sup{vertical-align:baseline}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{padding:.35em .75em .625em}legend{color:inherit;display:table;max-width:100%;white-space:normal}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}
+/* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css
+---------------------------------------------------------------------------- */
+/* stylelint-disable */
+html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}
+/* stylelint-enable */
 
 /* Box Sizing
 --------------------------------------------- */
@@ -78,15 +79,8 @@ html {
 --------------------------------------------- */
 
 html {
-	font-size: 62.5%; /* 10px browser default */
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-}
-
-/* Chrome fix */
-body > div {
-	font-size: 18px;
-	font-size: 1.8rem;
 }
 
 body {
@@ -94,10 +88,10 @@ body {
 	color: #333;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 18px;
-	font-size: 1.8rem;
 	font-weight: 400;
 	line-height: 1.4;
 	margin: 0;
+	overflow-x: hidden;
 }
 
 button,
@@ -170,8 +164,7 @@ blockquote {
 blockquote::before {
 	content: "\201C";
 	display: block;
-	font-size: 30px;
-	font-size: 3rem;
+	font-size: 30px;;
 	height: 0;
 	left: -20px;
 	position: relative;
@@ -195,12 +188,10 @@ h6 {
 
 h1 {
 	font-size: 30px;
-	font-size: 3rem;
 }
 
 h2 {
 	font-size: 27px;
-	font-size: 2.7rem;
 }
 
 .entry-content h3,
@@ -210,12 +201,10 @@ h2 {
 
 h3 {
 	font-size: 24px;
-	font-size: 2.4rem;
 }
 
 h4 {
 	font-size: 20px;
-	font-size: 2rem;
 }
 
 .entry-content h4 {
@@ -224,12 +213,10 @@ h4 {
 
 h5 {
 	font-size: 18px;
-	font-size: 1.8rem;
 }
 
 h6 {
 	font-size: 16px;
-	font-size: 1.6rem;
 }
 
 /* Objects
@@ -335,7 +322,6 @@ textarea {
 	border: 1px solid #ddd;
 	color: #333;
 	font-size: 18px;
-	font-size: 1.8rem;
 	font-weight: 400;
 	padding: 15px;
 	width: 100%;
@@ -372,7 +358,6 @@ input[type="submit"],
 	color: #fff;
 	cursor: pointer;
 	font-size: 16px;
-	font-size: 1.6rem;
 	font-weight: 600;
 	padding: 15px 30px;
 	text-decoration: none;
@@ -401,14 +386,6 @@ input[type="submit"]:hover,
 
 .button {
 	display: inline-block;
-}
-
-a.button.small,
-button.small,
-input[type="button"].small,
-input[type="reset"].small,
-input[type="submit"].small {
-	padding: 8px 16px;
 }
 
 .site-container button:disabled,
@@ -512,19 +489,20 @@ th:first-child {
 --------------------------------------------- */
 
 .site-container {
-	-webkit-animation: fadein 1s;
-	animation:         fadein 1s;
+	animation: fadein 1s;
 	word-wrap: break-word;
 }
 
 @keyframes fadein {
-	from { opacity: 0; }
-	to   { opacity: 1; }
-}
 
-@-webkit-keyframes fadein {
-	from { opacity: 0; }
-	to   { opacity: 1; }
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+
 }
 
 /* Site Inner
@@ -582,7 +560,6 @@ th:first-child {
 .breadcrumb {
 	border-bottom: 1px solid #eee;
 	font-size: 16px;
-	font-size: 1.6rem;
 	margin-bottom: 40px;
 	padding-bottom: 10px;
 }
@@ -626,19 +603,16 @@ th:first-child {
 .archive-title,
 .author-box-title {
 	font-size: 30px;
-	font-size: 3.0rem;
 	margin-bottom: 10px;
 }
 
 h1.entry-title {
 	font-size: 30px;
-	font-size: 3rem;
 	margin-bottom: 10px;
 }
 
 h2.entry-title {
 	font-size: 27px;
-	font-size: 2.7rem;
 	margin-bottom: 10px;
 }
 
@@ -655,17 +629,12 @@ h2.entry-title {
 
 .widget-title {
 	font-size: 18px;
-	font-size: 1.8rem;
 	font-weight: 600;
 	margin-bottom: 20px;
 }
 
 /* WordPress
 --------------------------------------------- */
-
-.aligncenter {
-	text-align: center;
-}
 
 a.aligncenter img {
 	display: block;
@@ -718,7 +687,6 @@ img.alignright,
 .gallery-caption,
 .wp-caption-text {
 	font-size: 14px;
-	font-size: 1.4rem;
 	font-weight: 600;
 	margin: 0;
 	text-align: center;
@@ -733,7 +701,6 @@ img.alignright,
 .entry-content .wp-video {
 	margin: 0 0 30px;
 }
-
 
 /* Widgets
 ---------------------------------------------------------------------------------------------------- */
@@ -807,14 +774,8 @@ img.alignright,
 	margin-bottom: 0;
 }
 
-.featured-content .entry-image {
-	height: 75px;
-	width: 75px;
-}
-
 .featured-content .entry-title {
 	font-size: 16px;
-	font-size: 1.6rem;
 	margin-bottom: 5px;
 	margin-top: 10px;
 }
@@ -838,7 +799,6 @@ img.alignright,
 
 .enews-widget input {
 	font-size: 16px;
-	font-size: 1.6rem;
 	margin-bottom: 10px;
 }
 
@@ -880,13 +840,6 @@ img.alignright,
 
 .gs-faq__question.gs-faq--expanded::after {
 	content: "\f460";
-}
-
-/* Jetpack
---------------------------------------------- */
-
-#wpstats {
-	display: none;
 }
 
 
@@ -939,9 +892,12 @@ img.alignright,
 	padding-top: 5px;
 }
 
+.wp-custom-logo .title-area img {
+	width: auto;
+}
+
 .site-title {
 	font-size: 20px;
-	font-size: 2rem;
 	font-weight: 600;
 	line-height: 1;
 	margin-bottom: 0;
@@ -985,7 +941,6 @@ img.alignright,
 	color: #333;
 	display: block;
 	font-size: 15px;
-	font-size: 1.5rem;
 	font-weight: 400;
 	outline-offset: -1px;
 	padding-bottom: 12px;
@@ -1021,7 +976,6 @@ img.alignright,
 .genesis-nav-menu .sub-menu a {
 	background-color: #fff;
 	font-size: 14px;
-	font-size: 1.4rem;
 	position: relative;
 	word-wrap: break-word;
 }
@@ -1032,6 +986,7 @@ img.alignright,
 }
 
 .genesis-nav-menu .menu-item:hover > .sub-menu {
+	display: block;
 	left: auto;
 	opacity: 1;
 }
@@ -1051,8 +1006,11 @@ img.alignright,
 
 .genesis-responsive-menu {
 	display: none;
-	padding-bottom: 15px;
 	position: relative;
+}
+
+.genesis-responsive-menu .genesis-nav-menu .menu-item:hover > .sub-menu {
+	display: none;
 }
 
 .menu-toggle,
@@ -1114,16 +1072,12 @@ img.alignright,
 .sub-menu-toggle::before {
 	display: inline-block;
 	text-rendering: auto;
-	-webkit-transform: rotate( 0 );
-	-ms-transform:     rotate( 0 );
 	transform:         rotate( 0 );
 	transition: transform .25s ease-in-out;
 }
 
 .sub-menu-toggle.activated::before {
-	-webkit-transform: rotate( 180deg );
-	-ms-transform:     rotate( 180deg );
-	transform:         rotate( 180deg );
+	transform: rotate( 180deg );
 }
 
 /* Header Menu
@@ -1166,6 +1120,11 @@ img.alignright,
 	list-style-type: disc;
 }
 
+.entry-content ol ul > li,
+.entry-content ul ul > li {
+	list-style-type: circle;
+}
+
 .entry-content ol ol,
 .entry-content ul ul {
 	margin-bottom: 0;
@@ -1192,17 +1151,21 @@ img.alignright,
 
 p.entry-meta {
 	font-size: 16px;
-	font-size: 1.6rem;
 	margin-bottom: 0;
 }
 
-.entry-header {
+.entry-header .entry-meta {
 	margin-bottom: 20px;
+}
+
+.entry-footer .entry-meta {
+	border-top: 1px solid #eee;
+	padding-top: 20px;
 }
 
 .entry-categories,
 .entry-tags {
-	display: inline;
+	display: block;
 }
 
 .entry-comments-link::before {
@@ -1232,7 +1195,6 @@ p.entry-meta {
 	cursor: pointer;
 	display: inline-block;
 	font-size: 16px;
-	font-size: 1.6rem;
 	font-weight: 600;
 	margin-bottom: 4px;
 	padding: 8px 12px;
@@ -1252,8 +1214,6 @@ p.entry-meta {
 .comment-respond,
 .entry-comments,
 .entry-pings {
-	font-size: 18px;
-	font-size: 1.8rem;
 	margin-bottom: 40px;
 }
 
@@ -1263,9 +1223,6 @@ p.entry-meta {
 
 .comment-list .depth-1 {
 	padding-left: 0;
-}
-
-.comment-list .bypostauthor {
 }
 
 .comment-header {
@@ -1299,13 +1256,16 @@ p.entry-meta {
 	display: none;
 }
 
+.comment-form-cookies-consent label {
+	display: inline;
+	padding-left: 10px;
+}
 
 /* Sidebar
 ---------------------------------------------------------------------------------------------------- */
 
 .sidebar {
 	font-size: 16px;
-	font-size: 1.6rem;
 	line-height: 1.5;
 }
 
@@ -1325,8 +1285,6 @@ p.entry-meta {
 	border-top: 1px solid #eee;
 	background-color: #fff;
 	clear: both;
-	font-size: 18px;
-	font-size: 1.8rem;
 	padding: 60px 0;
 }
 
@@ -1353,7 +1311,6 @@ p.entry-meta {
 .site-footer {
 	background-color: #fff;
 	font-size: 15px;
-	font-size: 1.5rem;
 	line-height: 1.5;
 	padding: 30px 5%;
 	text-align: center;
@@ -1474,7 +1431,6 @@ p.entry-meta {
 		border-top: 1px solid #eee;
 		display: block;
 		font-size: 16px;
-		font-size: 1.6rem;
 		margin-top: 10px;
 		padding: 40px 0 20px;
 		text-align: center;

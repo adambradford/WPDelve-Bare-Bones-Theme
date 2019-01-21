@@ -2,11 +2,12 @@
 /**
  * Genesis Sample.
  *
- * This file adds the Customizer additions to the Theme.
+ * This file adds the Customizer additions to the Genesis Sample Theme.
  *
- * @package WPDelve Bare Bones
- * @author  Adam Bradford
- * @link    https://wpdelve.com/
+ * @package Genesis Sample
+ * @author  StudioPress
+ * @license GPL-2.0-or-later
+ * @link    https://www.studiopress.com/
  */
 
 add_action( 'customize_register', 'genesis_sample_customizer_register' );

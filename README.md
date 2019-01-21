@@ -19,5 +19,4 @@ Changes include, but are not limited to:
 - Changed default styles in the archive description and title area
 - Added `width: 100%;` attribute to `.full-width-content .content` class in `min-width: 960px` breakpoint
 - Repositioned secondary (footer) navigation menu to before footer
-- Deleted all WooCommerce specific code and files
 - Added [SpamSpan](http://www.spamspan.com) to enable obfuscation of email addresses

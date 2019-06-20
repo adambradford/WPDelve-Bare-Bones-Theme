@@ -16,13 +16,11 @@ add_action( 'wp_enqueue_scripts', 'genesis_sample_enqueue_gutenberg_frontend_sty
  */
 function genesis_sample_enqueue_gutenberg_frontend_styles() {
 
-	$child_theme_slug = defined( 'CHILD_THEME_NAME' ) && CHILD_THEME_NAME ? sanitize_title_with_dashes( CHILD_THEME_NAME ) : 'genesis-sample';
-
 	wp_enqueue_style(
 		'genesis-sample-gutenberg',
 		get_stylesheet_directory_uri() . '/lib/gutenberg/front-end.css',
-		array( $child_theme_slug ),
-		CHILD_THEME_VERSION
+		array( genesis_get_theme_handle() ),
+		genesis_get_theme_version()
 	);
 
 }
@@ -35,12 +33,53 @@ add_action( 'enqueue_block_editor_assets', 'genesis_sample_block_editor_styles' 
  */
 function genesis_sample_block_editor_styles() {
 
+	$appearance = genesis_get_config( 'appearance' );
+
 	wp_enqueue_style(
 		'genesis-sample-gutenberg-fonts',
-		'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700',
+		$appearance['fonts-url'],
 		array(),
-		CHILD_THEME_VERSION
+		genesis_get_theme_version()
 	);
+
+}
+
+add_filter( 'body_class', 'genesis_sample_blocks_body_classes' );
+/**
+ * Adds body classes to help with block styling.
+ *
+ * - `has-no-blocks` if content contains no blocks.
+ * - `first-block-[block-name]` to allow changes based on the first block (such as removing padding above a Cover block).
+ * - `first-block-align-[alignment]` to allow styling adjustment if the first block is wide or full-width.
+ *
+ * @since 2.8.0
+ *
+ * @param array $classes The original classes.
+ * @return array The modified classes.
+ */
+function genesis_sample_blocks_body_classes( $classes ) {
+
+	if ( ! is_singular() || ! function_exists( 'has_blocks' ) || ! function_exists( 'parse_blocks' ) ) {
+		return $classes;
+	}
+
+	if ( ! has_blocks() ) {
+		$classes[] = 'has-no-blocks';
+		return $classes;
+	}
+
+	$post_object = get_post( get_the_ID() );
+	$blocks      = (array) parse_blocks( $post_object->post_content );
+
+	if ( isset( $blocks[0]['blockName'] ) ) {
+		$classes[] = 'first-block-' . str_replace( '/', '-', $blocks[0]['blockName'] );
+	}
+
+	if ( isset( $blocks[0]['attrs']['align'] ) ) {
+		$classes[] = 'first-block-align-' . $blocks[0]['attrs']['align'];
+	}
+
+	return $classes;
 
 }
 
@@ -56,58 +95,21 @@ add_theme_support( 'align-wide' );
 // Make media embeds responsive.
 add_theme_support( 'responsive-embeds' );
 
+$genesis_sample_appearance = genesis_get_config( 'appearance' );
+
 // Adds support for editor font sizes.
 add_theme_support(
 	'editor-font-sizes',
-	array(
-		array(
-			'name'      => __( 'Small', 'genesis-sample' ),
-			'shortName' => __( 'S', 'genesis-sample' ),
-			'size'      => 12,
-			'slug'      => 'small',
-		),
-		array(
-			'name'      => __( 'Normal', 'genesis-sample' ),
-			'shortName' => __( 'M', 'genesis-sample' ),
-			'size'      => 16,
-			'slug'      => 'normal',
-		),
-		array(
-			'name'      => __( 'Large', 'genesis-sample' ),
-			'shortName' => __( 'L', 'genesis-sample' ),
-			'size'      => 20,
-			'slug'      => 'large',
-		),
-		array(
-			'name'      => __( 'Larger', 'genesis-sample' ),
-			'shortName' => __( 'XL', 'genesis-sample' ),
-			'size'      => 24,
-			'slug'      => 'larger',
-		),
-	)
+	$genesis_sample_appearance['editor-font-sizes']
 );
 
 // Adds support for editor color palette.
 add_theme_support(
 	'editor-color-palette',
-	array(
-		array(
-			'name'  => __( 'Light gray', 'genesis-sample' ),
-			'slug'  => 'light-gray',
-			'color' => '#f5f5f5',
-		),
-		array(
-			'name'  => __( 'Medium gray', 'genesis-sample' ),
-			'slug'  => 'medium-gray',
-			'color' => '#999',
-		),
-		array(
-			'name'  => __( 'Dark gray', 'genesis-sample' ),
-			'slug'  => 'dark-gray',
-			'color' => '#333',
-		),
-	)
+	$genesis_sample_appearance['editor-color-palette']
 );
+
+require_once get_stylesheet_directory() . '/lib/gutenberg/inline-styles.php';
 
 add_action( 'after_setup_theme', 'genesis_sample_content_width', 0 );
 /**
@@ -115,7 +117,9 @@ add_action( 'after_setup_theme', 'genesis_sample_content_width', 0 );
  */
 function genesis_sample_content_width() {
 
+	$appearance = genesis_get_config( 'appearance' );
+
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/924
-	$GLOBALS['content_width'] = apply_filters( 'genesis_sample_content_width', 1062 );
+	$GLOBALS['content_width'] = apply_filters( 'genesis_sample_content_width', $appearance['content-width'] );
 
 }
